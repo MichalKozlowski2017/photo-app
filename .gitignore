@@ -6,6 +6,7 @@
 .pnp.js
 
 /photoappbase/node_modules
+/photoappbase/dist
 
 # testing
 /coverage
