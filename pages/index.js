@@ -63,6 +63,7 @@ export default function Home({photos, categories}) {
               <Link href={`/photo/${photo.slug.current}`} >
                 <div className="h-80 sm:h-60 md:h-64 lg:h-72 relative cursor-pointer">
                     <Image className="h-full w-full" layout='fill' objectFit='cover' src={urlFor(photo.mainImage).url()}/>
+                    
                 </div>
               </Link>
             </motion.div>
