@@ -77,11 +77,11 @@ export default function Home({photos, categories}) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const query = groq`
+  const photoQuery = groq`
     *[_type == "photo"] | order(_createdAt desc) {
       ...,
       categories[] -> {title},
-      lens[] -> {title}
+      lens[] -> {title},
     }
   `;
   
@@ -93,7 +93,7 @@ export async function getStaticProps({ params, preview = false }) {
   }
 `;
 
-  const photos = await getClient(preview).fetch(query);
+  const photos = await getClient(preview).fetch(photoQuery);
   const categories = await getClient(preview).fetch(categoriesQuery);
 
   return {

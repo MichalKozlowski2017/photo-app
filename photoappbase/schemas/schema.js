@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import photo from './photo'
 import category from './category'
 import lens from './lens'
+import camera from './camera'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -17,6 +18,7 @@ export default createSchema({
   types: schemaTypes.concat([
     photo,
     category,
-    lens
+    lens,
+    camera
   ]),
 })

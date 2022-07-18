@@ -4,17 +4,19 @@ const Header = () => {
   return (
     <header className="bg-black text-white flex flex-row h-16 items-center justify-between px-5">
       <div>
-        <h1 className="text-xl"><span className="font-bold">Michal Kozlowski</span> Portfolio</h1>
+        <Link href="/" className="cursor-pointer">
+          <h1 className="text-xl cursor-pointer"><span className="font-bold">Michal Kozlowski</span> Portfolio</h1>
+        </Link>
       </div>
       <div className="flex">
         <div className="inline-block mx-2 cursor-pointer">
-          <Link href="/">Bio</Link>
+          <Link href="/bio">Bio</Link>
         </div>
         <div className="inline-block mx-2 cursor-pointer">
-          <Link href="/">Gear</Link>
+          <Link href="/gear">Gear</Link>
         </div>
         <div className="inline-block mx-2 cursor-pointer">
-          <Link href="/">Contact</Link>
+          <Link href="/contact">Contact</Link>
         </div>
         
       </div>

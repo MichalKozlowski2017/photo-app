@@ -11,7 +11,11 @@ import { urlFor } from "@lib/sanity";
 const Photo = ({photo}) => {
   console.log(photo)
   return (
-    <div>Photo</div>
+    <main>
+      <div className="w-screen p-5 h-screen relative mx-auto">
+        <Image className="img h-full w-full" layout='fill' objectFit='contain' src={urlFor(photo.mainImage).url()}/>
+      </div>
+    </main>
   )
 }
 
@@ -40,16 +44,22 @@ export const getStaticPaths = async ({ params, preview = false }) => {
 }
 
 
-export const getStaticProps = async ({params, preview = false}) => {
-  const query = `
+export const getStaticProps = async ({params}) => {
+  const query = groq`
     *[_type == "photo" && slug.current == $slug][0]{
       ...,
+      "mainImage": mainImage.asset -> {
+        ...,
+        metadata {
+          exif
+        }
+      },
       categories[] -> {title},
       lens[] -> {title, mainImage}
     }
   `
 
-  const photo = await getClient(preview).fetch(query, {
+  const photo = await getClient().fetch(query, {
     slug: params.slug
   })
 
@@ -58,6 +68,7 @@ export const getStaticProps = async ({params, preview = false}) => {
       notFound: true
     }
   }
+
 
   return {
     props: {
