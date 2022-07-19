@@ -49,10 +49,10 @@ export default {
       of: [{type: 'reference', to: {type: 'category'}}],
     },
     {
-      name: 'lens',
-      title: 'Lens',
+      name: 'tags',
+      title: 'Tags',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'lens'}}],
+      of: [{type: 'reference', to: {type: 'tags'}}],
     },
     {
       name: 'publishedAt',

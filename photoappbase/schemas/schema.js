@@ -8,6 +8,7 @@ import photo from './photo'
 import category from './category'
 import lens from './lens'
 import camera from './camera'
+import tags from './tags'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,6 +20,7 @@ export default createSchema({
     photo,
     category,
     lens,
-    camera
+    camera,
+    tags
   ]),
 })

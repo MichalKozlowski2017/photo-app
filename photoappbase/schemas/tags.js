@@ -1,6 +1,6 @@
 export default {
-  name: "lens",
-  title: "Lenses",
+  name: "tags",
+  title: "Tags",
   type: "document",
   fields: [
     {
@@ -18,20 +18,6 @@ export default {
         source: "title",
         maxLength: 96
       }
-    },
-    {
-      name: "codeName",
-      title: "Code name",
-      type: "string",
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
+    }
   ],
 };
