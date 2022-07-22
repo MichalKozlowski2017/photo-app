@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Header = () => {
   return (
-    <header className="bg-black text-white flex flex-row h-16 items-center justify-between px-5">
+    <header className="bg-black text-white flex flex-row h-16 items-center justify-between px-5 fixed w-full z-50 top-0">
       <div>
         <Link href="/" className="cursor-pointer">
           <h1 className="text-xl cursor-pointer"><span className="font-bold">Michal Kozlowski</span> Portfolio</h1>

@@ -5,17 +5,20 @@ import client, {
   usePreviewSubscription,
 } from "@lib/sanity";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/future/image";
 import { urlFor } from "@lib/sanity";
 
 const Photo = ({photo}) => {
-  console.log(photo)
   return (
-    <main>
-      <div className="w-screen p-5 h-screen relative mx-auto">
-        <Image className="img h-full w-full" layout='fill' objectFit='contain' src={urlFor(photo.mainImage).url()}/>
+    <div className='relative h-screen'>
+      <div className="w-screen relative bg-red-500">
+        <Image 
+          className="w-full h-auto" 
+          placeholder='blur' 
+          blurDataURL={photo.mainImage.metadata.lqip} 
+          src={urlFor(photo.mainImage).url()}/>
       </div>
-    </main>
+    </div>
   )
 }
 
@@ -51,7 +54,10 @@ export const getStaticProps = async ({params}) => {
       "mainImage": mainImage.asset -> {
         ...,
         metadata {
-          exif
+          exif,
+          blurhash,
+          palette,
+          lqip
         }
       },
       categories[] -> {title},

@@ -12,6 +12,11 @@ const STUDIO_REWRITE = {
 
 module.exports = {
   nextConfig,
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
+  },
   rewrites: () => [STUDIO_REWRITE],
   images: {
     domains: ['cdn.sanity.io'],

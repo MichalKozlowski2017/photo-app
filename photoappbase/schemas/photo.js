@@ -37,7 +37,9 @@ export default {
       options: {
         hotspot: false,
         metadata: [
-          'location',
+          'blurhash',
+          'lqip',
+          'palette',
           'exif'
         ],
       },

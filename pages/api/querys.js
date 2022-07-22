@@ -9,7 +9,16 @@ export const getPhotosByCategory = async (keyword, preview = false) => {
     *[_type == "photo" && $keyword in categories[]->slug.current] | order(_createdAt desc) {
       ...,
       categories[0] -> {title},
-      lens[0] -> {title}
+      lens[0] -> {title},
+      "mainImage": mainImage.asset -> {
+        ...,
+        metadata {
+          exif,
+          blurhash,
+          palette,
+          lqip
+        }
+      },
     }
   `;
   

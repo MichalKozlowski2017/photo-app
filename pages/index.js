@@ -6,7 +6,7 @@ import client, {
   usePreviewSubscription,
 } from "@lib/sanity";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/future/image";
 import { urlFor } from "@lib/sanity";
 import { getPhotosByCategory } from "./api/querys";
 import { motion } from 'framer-motion';
@@ -51,19 +51,21 @@ export default function Home({photos, categories}) {
           {items.map((photo) => (
             <motion.div initial="hidden" animate="visible" variants={{
               hidden: {
-                scale: .8,
                 opacity: 0},
               visible: {
-                scale: 1,
                 opacity: 1,
                 transition: {
                   delay: .1
                 }},
             }} key={photo._id}>
               <Link href={`/photo/${photo.slug.current}`} >
-                <div className="h-80 sm:h-60 md:h-64 lg:h-72 relative cursor-pointer">
-                    <Image className="h-full w-full" layout='fill' objectFit='cover' src={urlFor(photo.mainImage).url()}/>
-                    
+                <div className=" relative cursor-pointer">
+                    <Image 
+                      width={1500}
+                      height={1000}
+                      placeholder='blur' 
+                      blurDataURL={photo.mainImage.metadata.lqip} 
+                      src={urlFor(photo.mainImage).url()}/>
                 </div>
               </Link>
             </motion.div>
@@ -82,6 +84,15 @@ export async function getStaticProps({ params, preview = false }) {
       ...,
       categories[] -> {title},
       lens[] -> {title},
+      "mainImage": mainImage.asset -> {
+        ...,
+        metadata {
+          exif,
+          blurhash,
+          palette,
+          lqip
+        }
+      },
     }
   `;
   
