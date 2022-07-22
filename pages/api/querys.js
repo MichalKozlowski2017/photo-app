@@ -1,12 +1,9 @@
 import { groq } from "next-sanity";
-import client, {
-  getClient,
-  usePreviewSubscription,
-} from "@lib/sanity";
+import {getClient} from "@lib/sanity";
 
-export const getPhotosByCategory = async (keyword, preview = false) => {
+export const getPhotosByCategory = async (keyword) => {
   const query = groq`
-    *[_type == "photo" && $keyword in categories[]->slug.current] | order(_createdAt desc) {
+    *[_type == "photo" ${keyword != 'all' ? `&& $keyword in categories[]->slug.current` : ''}] | order(_createdAt desc) {
       ...,
       categories[0] -> {title},
       lens[0] -> {title},
@@ -21,7 +18,6 @@ export const getPhotosByCategory = async (keyword, preview = false) => {
       },
     }
   `;
-  
-  const filteredPhotos = await getClient(preview).fetch(query, {keyword: keyword})
+  const filteredPhotos = await getClient().fetch(query, {keyword: keyword})
   return filteredPhotos
 }

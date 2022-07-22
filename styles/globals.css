@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.active {
-  background-color: red !important;
+html {
+  overflow-x: hidden;
 }
